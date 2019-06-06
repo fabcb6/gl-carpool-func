@@ -3,7 +3,7 @@ const uuid = require('uuid/v1');
 
 const tableService = azure.createTableService();
 
-const tableName = "ride";
+const tableName = "rides";
 
 module.exports = function (context, req) {
     context.log('Start ItemCreate');
