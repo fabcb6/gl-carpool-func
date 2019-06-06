@@ -43,3 +43,10 @@ module.exports = function (context, req) {
         context.done();
     }
 }
+
+// Example:
+// {
+// 	"Color":"Yellor",
+// 	"Model":"Kia - Picanto",
+// 	"Plate":"WTF-678"
+// }
