@@ -12,6 +12,7 @@ Publish
 *.Cache
 project.lock.json
 
+/node_modules
 /packages
 /TestResults
 

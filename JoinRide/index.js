@@ -3,7 +3,7 @@ const uuid = require('uuid/v1');
 
 const tableService = azure.createTableService();
 
-const tableName = "rides";
+const tableName = "passengers";
 
 module.exports = function (context, req) {
     context.log('Start ItemCreate');
@@ -33,16 +33,11 @@ module.exports = function (context, req) {
 }
 
 // Example
-// Status could be: active, inactive, inprogress, canceled, completed
-
+// Status could be: “pending”, “approved” and “denied” 
+// For the JoinRide function the idea is to set it as pending and the driver approves or denied the request
 
 // {
-// 	"CarId": "08f376f0-82ac-11e9-a0e1-2593447bd379",
-// 	"DateTime": "2019-06-06T06:43:11.903Z",
-// 	"Destinations": "[Heredia, Alajuela]",
-// 	"Details":"--optional--",
-// 	"OriginPoint":"La Sanana",
-// 	"Seats":"4",
-// 	"Status":"active",
+// 	"RideId": "1",
+// 	"Status":"pending",
 // 	"UserId":"1"
 // }
