@@ -8,7 +8,8 @@ const GetById = (id, context) => {
     // return item with RowKey 'id'
     tableService.retrieveEntity(tableName, 'Partition', id, function (error, result, response) {
         if (!error) {
-            context.res.status(200).json(response.body);
+            // context.res.status(200).json(response.body);
+            GetUserValues([response.body], context);
         }
         else {
             context.res.status(500).json({error : error});
@@ -24,14 +25,14 @@ const GetByRideId = (RideId, Status, context) => {
 
     const statusValues = ['pending', 'approved', 'denied'];
     if ((Status !== undefined) && (statusValues.indexOf(Status))){
-        query = new azure.TableQuery()
-            .top(20)
-            .where('RideId eq ? ', RideId)
+        query = query
             .and('Status eq ?', Status);
     }
+    
     tableService.queryEntities(tableName, query, null, function(error, result, response) {
         if (!error) {
-            context.res.status(200).json(response.body.value);
+            // context.res.status(200).json(response.body.value);
+            GetUserValues(response.body.value, context);
         }
         else {
             context.res.status(500).json({error : error});
@@ -44,15 +45,53 @@ const GetAll = context => {
     const query = new azure.TableQuery().top(100);
     tableService.queryEntities(tableName, query, null, function (error, result, response) {
         if(!error){
-            context.res.status(200).json(response.body.value);
+            // context.res.status(200).json(response.body.value);
+            GetUserValues(response.body.value, context);
         } else {
             context.res.status(500).json({error : error});
         }
     });
 }
 
-const GetUserValues = passengersResult => {
-    return passengersResult;
+const GetUserValues = (passengersResult, context) => {
+
+    const tableUsers = "users";
+
+    let query = new azure.TableQuery()
+        .top(20)
+        .where('Partition eq ? ', 'Partition');
+    
+    passengersResult.forEach((item, index) => {
+        if (item.UserId !== null) {
+            query = query
+            .or('RowKey eq ?', item.UserId );
+        }
+    })
+
+    tableService.queryEntities(tableUsers, query, null, function(error, result, response) {
+        if (!error) {
+            const merge = (a, b) => {
+                let result = [];
+                console.log('######### a.length:', a.length)
+                if(a.length > 0) {
+                    a.forEach(aitem => {
+                        let bitem = b.find ( bitem => aitem['UserId'] === bitem['RowKey']);
+                        if(bitem) {
+                            result.push({...aitem, ...bitem })
+                        }
+                    })
+                }
+                return result;
+            };
+            let pr = passengersResult;
+            let ur = response.body.value;
+
+            context.res.status(200).json(merge(pr, ur));
+        }
+        else {
+            context.res.status(500).json({error : error});
+        }
+    }); 
 }
 
 module.exports = function (context, req) {
