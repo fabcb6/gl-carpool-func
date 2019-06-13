@@ -1,5 +1,3 @@
-import { Stats } from 'fs';
-
 const azure = require('azure-storage');
 
 const tableService = azure.createTableService();
@@ -29,7 +27,7 @@ const GetByRideId = (RideId, Status, context) => {
         query = new azure.TableQuery()
             .top(20)
             .where('RideId eq ? ', RideId)
-            .and('Status eq ?', Stats);
+            .and('Status eq ?', Status);
     }
     tableService.queryEntities(tableName, query, null, function(error, result, response) {
         if (!error) {
