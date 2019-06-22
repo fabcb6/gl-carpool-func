@@ -1,7 +1,7 @@
 const azure = require('azure-storage');
 
 const tableService = azure.createTableService();
-const tableName = "passengers";
+const tableName = 'passengers';
 
 // return a specific passenger by id
 const GetById = (id, context) => {
@@ -17,7 +17,6 @@ const GetById = (id, context) => {
     });
 };
 
-// return the top 5 passengers from a User
 const GetByRideId = (RideId, Status, context) => {
     let query = new azure.TableQuery()
         .top(20)
@@ -72,7 +71,6 @@ const GetUserValues = (passengersResult, context) => {
         if (!error) {
             const merge = (a, b) => {
                 let result = [];
-                console.log('######### a.length:', a.length)
                 if(a.length > 0) {
                     a.forEach(aitem => {
                         let bitem = b.find ( bitem => aitem['UserId'] === bitem['RowKey']);
