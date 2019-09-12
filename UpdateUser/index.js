@@ -1,7 +1,7 @@
 const azure = require('azure-storage');
 
 const tableService = azure.createTableService();
-const tableName = "cars";
+const tableName = "users";
 
 module.exports = function (context, req) {
     context.log('Start ItemUpdate');
@@ -14,7 +14,7 @@ module.exports = function (context, req) {
         // Depending on how you want this to behave you can also use tableService.mergeEntity
         tableService.replaceEntity(tableName, item, function (error, result, response) {
             if (!error) {
-                context.res.status(202).json(result);
+                context.res.status(202).json(item);
             } else {
                 context.res.status(500).json({ error: error });
             }
