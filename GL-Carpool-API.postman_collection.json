@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "2154726b-caa1-430c-afd8-83987306e40f",
+		"name": "GL-Carpool-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{url}}/AddCar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Color\":\"Yellor\",\n\t\"Model\":\"Kia - Picanto\",\n\t\"Plate\":\"WTF-678\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/AddCar",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"AddCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/GetCars?UserId=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/GetCars?UserId=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"GetCars"
+					],
+					"query": [
+						{
+							"key": "UserId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/UpdateCar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"odata.metadata\": \"https://carpoolglstorage.table.core.windows.net/$metadata#cars/@Element\",\n    \"odata.etag\": \"W/\\\"datetime'2019-06-04T05%3A13%3A47.9948009Z'\\\"\",\n    \"PartitionKey\": \"Partition\",\n    \"RowKey\": \"88766c00-8687-11e9-8b58-574fa7760b3f\",\n    \"Timestamp\": \"2019-06-04T05:13:47.9948009Z\",\n    \"Color\": \"Yellor\",\n    \"Model\": \"Kia - Rio\",\n    \"Plate\": \"WTF-678\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/UpdateCar",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"UpdateCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/AddRide",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"CarId\": \"08f376f0-82ac-11e9-a0e1-2593447bd379\",\n\t\"DateTime\": \"2019-06-06T06:43:11.903Z\",\n\t\"Destinations\": \"[Heredia, Alajuela]\",\n\t\"Details\":\"--optional--\",\n\t\"OriginPoint\":\"La Sanana\",\n\t\"Seats\":\"4\",\n\t\"Status\":\"active\",\n\t\"UserId\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/AddRide",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"AddRide"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/GetRides?id=e9d50800-8829-11e9-9207-a136c1c64660",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/GetRides?id=e9d50800-8829-11e9-9207-a136c1c64660",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"GetRides"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "e9d50800-8829-11e9-9207-a136c1c64660"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/GetUsers?id=f9c655e0-8a5c-11e9-9da3-4f3ac84732aa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/GetUsers?id=f9c655e0-8a5c-11e9-9da3-4f3ac84732aa",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"GetUsers"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "f9c655e0-8a5c-11e9-9da3-4f3ac84732aa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/AddUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"New User\",\n    \"Position\": \"Wroking hard at home\",\n    \"Profile\": \"passenger\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/AddUser",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"AddUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/JoinRide",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"RideId\": \"e9d50800-8829-11e9-9207-a136c1c64660\",\r\n\t\"Status\":\"pending\",\r\n\t\"UserId\":\"f9c655e0-8a5c-11e9-9da3-4f3ac84732aa\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/JoinRide",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"JoinRide"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/GetPassengersByStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/GetPassengersByStatus?",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"GetPassengersByStatus"
+					],
+					"query": [
+						{
+							"key": "RideId",
+							"value": "e9d50800-8829-11e9-9207-a136c1c64660",
+							"disabled": true
+						},
+						{
+							"key": "Status",
+							"value": "pending",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "f9c655e0-8a5c-11e9-9da3-4f3ac84732aasss",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Params (Optionals)\n?RideId=e9d50800-8829-11e9-9207-a136c1c64660\n&Status=pending\n&id=f9c655e0-8a5c-11e9-9da3-4f3ac84732aasss"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/SetPassengersStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"RowKey\": \"fb606680-9262-11e9-bb07-db8b664a5b85\",\n    \"PartitionKey\": \"Partition\",\n    \"RideId\": \"e9d50800-8829-11e9-9207-a136c1c64660\",\n    \"Status\": \"approved\",\n    \"UserId\": \"f9c655e0-8a5c-11e9-9da3-4f3ac84732aa\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/SetPassengersStatus",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SetPassengersStatus"
+					]
+				},
+				"description": "{\n\t\"RowKey\": \"fb606680-9262-11e9-bb07-db8b664a5b85\",\n    \"PartitionKey\": \"Partition\",\n    \"RideId\": \"e9d50800-8829-11e9-9207-a136c1c64660\",\n    \"Status\": \"approved\",\n    \"UserId\": \"f9c655e0-8a5c-11e9-9da3-4f3ac84732aa\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/UpdateUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PartitionKey\": \"Partition\",\n    \"RowKey\": \"f9c655e0-8a5c-11e9-9da3-4f3ac84732aa\",\n    \"Timestamp\": \"2019-06-13T07:32:17.9935562Z\",\n    \"Name\": \"User Test1\",\n    \"Position\": \"Wroking hard at home\",\n    \"Profile\": \"passenger\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/UpdateUser",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"UpdateUser"
+					]
+				},
+				"description": "{\n    \"PartitionKey\": \"Partition\",\n    \"RowKey\": \"f9c655e0-8a5c-11e9-9da3-4f3ac84732aa\",\n    \"Timestamp\": \"2019-06-13T07:32:17.9935562Z\",\n    \"Name\": \"User Test1\",\n    \"Position\": \"Wroking hard at home\",\n    \"Profile\": \"passenger\"\n}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c61f42f9-b915-4abf-90d5-fb8b3b6bb6e3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4e83d052-1193-4da7-94eb-8322cf9d5b74",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d5c35abd-20a6-43d9-89f1-a24d78084d04",
+			"key": "url",
+			"value": "https://carpool-gl-func-app.azurewebsites.net/api",
+			"type": "string"
+		},
+		{
+			"id": "d5481f1c-7fa2-49e2-a0b5-d8ef8d235d0c",
+			"key": "devURL",
+			"value": "http://localhost:7071",
+			"type": "string"
+		}
+	]
+}
